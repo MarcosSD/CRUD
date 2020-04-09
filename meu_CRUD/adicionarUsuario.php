@@ -10,7 +10,8 @@ if($nome && $email){
     $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
     $sql->bindValue(':email', $email);
     $sql->execute();
-
+    
+    // Verifica se há algum usuário com o mesmo email já cadastrado
     if($sql->rowCount() === 0){
         $sql = $pdo->prepare("INSERT INTO usuarios (nome,email)
                               VALUES (:nome, :email) ");
